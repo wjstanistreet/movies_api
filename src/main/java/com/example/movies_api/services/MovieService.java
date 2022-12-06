@@ -31,4 +31,20 @@ public class MovieService {
     public Optional<Movie> getMovieById(int id){
         return movieRepository.findById(id);
     }
+
+    public Reply putMovie(Movie movie, int id){
+        Movie movieById = movieRepository.findById(id).get();
+        if (!movieById.getTitle().equals(movie.getTitle())){
+            movieById.setTitle(movie.getTitle());
+        }
+        if (movieById.getRating() != movie.getRating()){
+            movieById.setRating(movie.getRating());
+        }
+        if (movieById.getDuration() != movie.getDuration()){
+            movieById.setDuration(movie.getDuration());
+        }
+        movieRepository.save(movieById);
+
+        return new Reply(String.format("Movie entry %d has been changed to %s, %d, %d", id, movieById.getTitle(), movieById.getRating(), movieById.getDuration()));
+    }
 }

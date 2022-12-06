@@ -40,4 +40,10 @@ public class MovieController {
         return new ResponseEntity<>(reply, HttpStatus.OK);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Reply> patchMovie(@RequestBody Movie movie, @PathVariable int id){
+        Reply reply = movieService.putMovie(movie, id);
+        return new ResponseEntity<>(reply, HttpStatus.OK);
+    }
+
 }
