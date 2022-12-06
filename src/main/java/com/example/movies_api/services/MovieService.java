@@ -6,6 +6,7 @@ import com.example.movies_api.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,15 @@ public class MovieService {
 
     public List<Movie> getAllMovies(){
         return movieRepository.findAll();
+    }
+    public List<Movie> getAllMoviesLessThanDuration(int maxDuration){
+        List<Movie> lessThanList = new ArrayList<>();
+        for (Movie movie : movieRepository.findAll()){
+            if (movie.getDuration() <= maxDuration){
+                lessThanList.add(movie);
+            }
+        }
+        return lessThanList;
     }
 
     public Optional<Movie> getMovieById(int id){

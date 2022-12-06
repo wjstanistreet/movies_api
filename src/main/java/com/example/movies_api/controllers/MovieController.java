@@ -18,9 +18,14 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
+//    @GetMapping
+//    public ResponseEntity<List<Movie>> getMovies(){
+//        List<Movie> movieList = movieService.getAllMovies();
+//        return new ResponseEntity<>(movieList, HttpStatus.OK);
+//    }
     @GetMapping
-    public ResponseEntity<List<Movie>> getMovies(){
-        List<Movie> movieList = movieService.getAllMovies();
+    public ResponseEntity<List<Movie>> getMovies(@RequestParam(value = "maxDuration") int maxDuration){
+        List<Movie> movieList = movieService.getAllMoviesLessThanDuration(maxDuration);
         return new ResponseEntity<>(movieList, HttpStatus.OK);
     }
 
