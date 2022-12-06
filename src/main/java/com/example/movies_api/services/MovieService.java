@@ -19,10 +19,9 @@ public class MovieService {
 
     }
 
-    public Reply newMovie(String title, int rating, int duration){
-        Movie movie = new Movie(title, rating, duration);
+    public Reply newMovie(Movie movie){
         movieRepository.save(movie);
-        return new Reply(String.format("Added %s to Movies in Cinema", title));
+        return new Reply(String.format("Added %s to Movies in Cinema", movie.getTitle()));
     }
 
     public List<Movie> getAllMovies(){

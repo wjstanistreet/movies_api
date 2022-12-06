@@ -35,8 +35,8 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<Reply> newMovie(){
-        Reply reply = movieService.newMovie("Movie", 5, 100);
+    public ResponseEntity<Reply> newMovie(@RequestBody Movie movie){
+        Reply reply = movieService.newMovie(movie);
         return new ResponseEntity<>(reply, HttpStatus.OK);
     }
 
