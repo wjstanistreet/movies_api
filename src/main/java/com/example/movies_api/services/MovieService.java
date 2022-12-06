@@ -45,6 +45,12 @@ public class MovieService {
         }
         movieRepository.save(movieById);
 
-        return new Reply(String.format("Movie entry %d has been changed to %s, %d, %d", id, movieById.getTitle(), movieById.getRating(), movieById.getDuration()));
+        return new Reply(String.format("Movie entry %d has been changed to title: %s, rating: %d, duration: %d", id, movieById.getTitle(), movieById.getRating(), movieById.getDuration()));
+    }
+
+    public Reply deleteMovie(int id){
+        String title = movieRepository.findById(id).get().getTitle();
+        movieRepository.deleteById(id);
+        return new Reply(String.format("Movie entry %d, title: %s has been deleted", id, title));
     }
 }
