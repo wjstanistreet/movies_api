@@ -24,7 +24,7 @@ public class MovieController {
 //        return new ResponseEntity<>(movieList, HttpStatus.OK);
 //    }
     @GetMapping
-    public ResponseEntity<List<Movie>> getMovies(@RequestParam(value = "maxDuration") int maxDuration){
+    public ResponseEntity<List<Movie>> getMovies(@RequestParam int maxDuration){
         List<Movie> movieList = movieService.getAllMoviesLessThanDuration(maxDuration);
         return new ResponseEntity<>(movieList, HttpStatus.OK);
     }
@@ -42,11 +42,11 @@ public class MovieController {
     @PostMapping
     public ResponseEntity<Reply> newMovie(@RequestBody Movie movie){
         Reply reply = movieService.newMovie(movie);
-        return new ResponseEntity<>(reply, HttpStatus.OK);
+        return new ResponseEntity<>(reply, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Reply> patchMovie(@RequestBody Movie movie, @PathVariable int id){
+    public ResponseEntity<Reply> putMovie(@RequestBody Movie movie, @PathVariable int id){
         Reply reply = movieService.putMovie(movie, id);
         return new ResponseEntity<>(reply, HttpStatus.OK);
     }

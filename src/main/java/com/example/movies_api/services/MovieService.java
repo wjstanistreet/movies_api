@@ -47,7 +47,7 @@ public class MovieService {
         if (!movieById.getTitle().equals(movie.getTitle())){
             movieById.setTitle(movie.getTitle());
         }
-        if (movieById.getRating() != movie.getRating()){
+        if (movieById.getRating().equals(movie.getRating())){
             movieById.setRating(movie.getRating());
         }
         if (movieById.getDuration() != movie.getDuration()){
@@ -55,7 +55,7 @@ public class MovieService {
         }
         movieRepository.save(movieById);
 
-        return new Reply(String.format("Movie entry %d has been changed to title: %s, rating: %d, duration: %d", id, movieById.getTitle(), movieById.getRating(), movieById.getDuration()));
+        return new Reply(String.format("Movie entry %d has been changed to title: %s, rating: %s, duration: %d", id, movieById.getTitle(), movieById.getRating(), movieById.getDuration()));
     }
 
     public Reply deleteMovie(int id){
